@@ -1,6 +1,8 @@
 # izveido kategoriju sarakstu
 from secrets import choice
-
+# datumu apstrāde 
+from datetime import date
+import re
 
 Kategorijas = ["Ēdiens", "Transports", "Izklaide", "Komunālie maksājumi", "Veselība", "Iepirkšanās", "Citi"]
 # izdevumu izsekotals" 
@@ -26,11 +28,11 @@ while True:
     if choice == "7":
         print("Programma beidzas.")
         break
-    if choice == "1": 
+    elif choice == "1": 
 # pievienot izdevumus
-        if choice == "1":
-         print("\nPievienot izdevumu")
+        print("\nPievienot izdevumu")
 # Datuma izvēle ar noklusējuma datumu šodien
+
         today = date.today().strftime("%Y-%m-%d")
         datums = input(f"Ievadiet datumu (YYYY-MM-DD)[{today}]: ")
 
@@ -56,22 +58,21 @@ while True:
                 if summa < 0:
                     print("Summa ir negatīva!")
                 # Apstiprina summu un noapalo lidz 2 zimes aiz komanta
-                amount = round(amount, 2)
+                summa = round(summa, 2)
                 break
             except ValueError:
                 print("Ievadi summu (EUR)")
- 
-
-# pievieno aprakstu brīva formā
-description = input("Apraksts: ")
+# ievadi aprakstu
+        apraksts = input("Ievadiet aprakstu (pēc izvēles): ")
 
 # saglabā izdevumu datubāzē
-izdevumi = {
+izdevumi = []
+izdevumu_izsekotajs = {
     "datums": datums,
     "kategorija": Kategorijas_izvēle,
     "summa": summa,
-    "apraksts": description
+    "apraksts": apraksts
 }
-izdevumi.append(izdevumi)
+izdevumi.append(izdevumu_izsekotajs)
 # apstiprina pievienošanu
-print(f"\nIzdevums pievienots:", izdevumi)
+print(f"\nIzdevums pievienots:", izdevumu_izsekotajs)
