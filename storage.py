@@ -32,12 +32,12 @@ print(loaded)
 #savienot ar app.py
 from storage import load_expenses, save_expenses
 
-izmakas = load_expenses()
-jaunas_izmakas = {
+izmaksas = load_expenses()
+jaunas_izmaksas = {
 "datums": "2024-06-01",
 "kategorija": "Pārtika",
 "summa": 50.0,
 "apraksts": "Pārtikas preces"
 }
-izmakas.append(jaunas_izmakas)
-save_expenses(izmakas)
+izmaksas.append(jaunas_izmaksas)
+save_expenses(izmaksas)
