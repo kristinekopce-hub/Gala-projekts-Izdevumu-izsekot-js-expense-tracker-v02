@@ -1,9 +1,8 @@
 import json
 import os
 import os
-
-# Fails, kur glabāsies izdevumi, lasīšanas režīmā "r"
-izdevumu_fails = "izdevumi.json"
+# faila atrašnās vietas noteikšana
+izdevumu_fails = os.path.join(os.path.dirname(__file__), "izdevumi.json")
 def load_expenses():
     if not os.path.exists(izdevumu_fails):
         return []
@@ -30,3 +29,15 @@ def save_expenses(izdevumi, izdevumu_fails = "izdevumi.json"):
 with open(izdevumu_fails, "r", encoding='utf-8') as f:   
     loaded = json.load(f)
 print(loaded)
+#savienot ar app.py
+from storage import load_expenses, save_expenses
+
+izmakas = load_expenses()
+jaunas_izmakas = {
+"datums": "2024-06-01",
+"kategorija": "Pārtika",
+"summa": 50.0,
+"apraksts": "Pārtikas preces"
+}
+izmakas.append(jaunas_izmakas)
+save_expenses(izmakas)
