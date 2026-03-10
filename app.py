@@ -21,6 +21,7 @@ def izdevumu_izsekotajs():
 # !!! \n  nozīmē jauna rinda 
 # while true izsauc ciklu līdz beidzas ar BREAK, 
 # if pamatnosacījums if x=1 Elif > lielāks par xx else < mazāks par xx ar papilus nosacījumu 
+# 7 IZVELE
 while True:
     choice = input("Izvēlieties darbību (1-7): ")
 
@@ -29,6 +30,7 @@ while True:
         print("Programma beidzas.")
         break
     elif choice == "1": 
+# 1 IZVELE
 # pievienot izdevumus
         print("\nPievienot izdevumu")
 # Datuma izvēle ar noklusējuma datumu šodien
@@ -76,3 +78,5 @@ izdevumu_izsekotajs = {
 izdevumi.append(izdevumu_izsekotajs)
 # apstiprina pievienošanu
 print(f"\nIzdevums pievienots:", izdevumu_izsekotajs)
+# 2 IZVELE Parādīt izdevumus"
+
