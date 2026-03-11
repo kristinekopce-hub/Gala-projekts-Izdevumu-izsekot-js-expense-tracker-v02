@@ -4,7 +4,8 @@ import re
 
 # savienojums ar storage.py
 from storage import load_expenses, save_expenses
-
+#izveikdo tabulas izveide
+from tabulate import tabulate   
 Kategorijas = [
     "Ēdiens", 
     "Transports", 
@@ -98,20 +99,25 @@ while True:
 # ___2 IZVELE 
     # parādīt izdevumus
     elif choice == "2":  
-        print("\nParādīt izdevumus:")
+        print("\nIzdevumi:")
         if not izdevumi:
             print("Nav pievienotu izdevumu.")
         else:
+            tabula = []
     # tabulas galvas izveidi jāievēro <12> -12 simbolu platums, <10> - 10 simbolu platums, <20> - 20 simbolu platums
-            print(f"{'Datums':<12} | {'Summa (EUR)':<10} | {'Kategorija':<20} | Apraksts")
-            print("-" * 70)
-            for izdevums in izdevumi:
-                datums = izdevums['datums']
-                summa = f"{izdevums['summa']:.2f} EUR"
-                kategorija = izdevums['kategorija']
-                apraksts = izdevums['apraksts']
-                print(f"{datums:<12} | {summa:<10} | {kategorija:<20} | {apraksts}")
+            for izdevumu_saraksts in izdevumi:
+                tabula.append([
+                    izdevumu_saraksts["datums"],
+                    f"{izdevumu_saraksts['summa']:.2f} EUR",
+                    izdevumu_saraksts["kategorija"],
+                    izdevumu_saraksts["apraksts"]
+                ])
+            print(tabulate(
+                tabula, 
+                headers=["Datums", "Summa (EUR)", "Kategorija", "Apraksts"], 
+                tablefmt="grid"
+            ))
     else:
         print("Nederīga izvēle. Lūdzu, izvēlieties darbību no 1 līdz 7.")   
 
-    
+
