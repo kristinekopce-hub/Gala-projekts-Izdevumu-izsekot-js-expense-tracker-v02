@@ -52,8 +52,9 @@ while True:
 
         if datums == "":
             datums = today 
-        elif not re.match(r"\d{4}-\d{2}-\d{2}", date_input):
+        elif not re.match(r"\d{4}-\d{2}-\d{2}", datums):
             print("Datumu:", datums)
+            continue
 # kategorijas izvēle
         print("\nKategorijas:")
         print(", ".join(Kategorijas))
@@ -81,18 +82,18 @@ while True:
 # ievadi aprakstu
         apraksts = input("Ievadiet aprakstu (pēc izvēles): ")
 # jauns izdevums izveide
-jauns_izdevums = {
-    "datums": datums,
-    "kategorija": Kategorijas_izvēle,
-    "summa": summa,
-    "apraksts": apraksts
-}
+        jauns_izdevums = {
+        "datums": datums,
+        "kategorija": Kategorijas_izvēle,
+        "summa": summa,
+        "apraksts": apraksts
+        }
 
 # pievieno jaunu izdevumu izdevumu sarakstam
-izdevumi.append(jauns_izdevums)
+    izdevumi.append(jauns_izdevums)
 # saglabā izdevumus datubāzē
-save_expenses(izdevumi)
+    save_expenses(izdevumi)
 
-print("Izdevums pievienots:", jauns_izdevums)
+    print("Izdevums pievienots:", jauns_izdevums)
 
 
