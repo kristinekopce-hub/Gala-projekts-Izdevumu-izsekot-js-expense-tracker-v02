@@ -1,10 +1,22 @@
-# izveido kategoriju sarakstu
-from secrets import choice
-# datumu apstrāde 
+# datumu apstrāde
 from datetime import date
 import re
 
-Kategorijas = ["Ēdiens", "Transports", "Izklaide", "Komunālie maksājumi", "Veselība", "Iepirkšanās", "Citi"]
+# savienojums ar storage.py
+from storage import load_expenses, save_expenses
+
+Kategorijas = [
+    "Ēdiens", 
+    "Transports", 
+    "Izklaide", 
+    "Komunālie maksājumi", 
+    "Veselība", "Iepirkšanās", 
+    "Citi"
+    ]
+
+# ielādē esošos izdevumus
+izdevumi = load_expenses()
+
 # izdevumu izsekotals" 
 def izdevumu_izsekotajs():
     print ("-------------------")
@@ -44,6 +56,8 @@ while True:
             print("Datumu:", datums)
 # kategorijas izvēle
         print("\nKategorijas:")
+        print(", ".join(Kategorijas))
+
         while True:
             Kategorijas_izvēle = input(f"Ievadiet kategoriju ({', '.join(Kategorijas)}): ")
             print("Tu izvēlējies:", Kategorijas_izvēle)
@@ -66,17 +80,19 @@ while True:
                 print("Ievadi summu (EUR)")
 # ievadi aprakstu
         apraksts = input("Ievadiet aprakstu (pēc izvēles): ")
-
-# saglabā izdevumu datubāzē
-izdevumi = []
-izdevumu_izsekotajs = {
+# jauns izdevums izveide
+jauns_izdevums = {
     "datums": datums,
     "kategorija": Kategorijas_izvēle,
     "summa": summa,
     "apraksts": apraksts
 }
-izdevumi.append(izdevumu_izsekotajs)
-# apstiprina pievienošanu
-print(f"\nIzdevums pievienots:", izdevumu_izsekotajs)
-# 2 IZVELE Parādīt izdevumus"
+
+# pievieno jaunu izdevumu izdevumu sarakstam
+izdevumi.append(jauns_izdevums)
+# saglabā izdevumus datubāzē
+save_expenses(izdevumi)
+
+print("Izdevums pievienots:", jauns_izdevums)
+
 

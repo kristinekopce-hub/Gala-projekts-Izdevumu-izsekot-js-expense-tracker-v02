@@ -1,11 +1,20 @@
-{
-    "izdevumi": [
-        {
-            "id": 1,
-            "datums": "2024-06-01",
-            "summa": 0,
-            "kategorija": "",
-            "apraksts": ""
-        }
-    ]
-}
+[
+  {
+    "datums": "2024-06-01",
+    "kategorija": "Pārtika",
+    "summa": 50.0,
+    "apraksts": "Pārtikas preces"
+  },
+  {
+    "datums": "2024-06-01",
+    "kategorija": "Pārtika",
+    "summa": 50.0,
+    "apraksts": "Pārtikas preces"
+  },
+  {
+    "datums": "2024-06-01",
+    "kategorija": "Pārtika",
+    "summa": 50.0,
+    "apraksts": "Pārtikas preces"
+  }
+]
