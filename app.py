@@ -42,6 +42,7 @@ while True:
         print("Programma beidzas.")
         break
     elif choice == "1": 
+
 # 1 IZVELE
 # pievienot izdevumus
         print("\nPievienot izdevumu")
@@ -90,10 +91,27 @@ while True:
         }
 
 # pievieno jaunu izdevumu izdevumu sarakstam
-    izdevumi.append(jauns_izdevums)
+        izdevumi.append(jauns_izdevums)
 # saglabā izdevumus datubāzē
-    save_expenses(izdevumi)
+        save_expenses(izdevumi)
+        print("Izdevums pievienots:", jauns_izdevums)
+# ___2 IZVELE 
+    # parādīt izdevumus
+    elif choice == "2":  
+        print("\nParādīt izdevumus:")
+        if not izdevumi:
+            print("Nav pievienotu izdevumu.")
+        else:
+    # tabulas galvas izveidi jāievēro <12> -12 simbolu platums, <10> - 10 simbolu platums, <20> - 20 simbolu platums
+            print(f"{'Datums':<12} | {'Summa (EUR)':<10} | {'Kategorija':<20} | Apraksts")
+            print("-" * 70)
+            for izdevums in izdevumi:
+                datums = izdevums['datums']
+                summa = f"{izdevums['summa']:.2f} EUR"
+                kategorija = izdevums['kategorija']
+                apraksts = izdevums['apraksts']
+                print(f"{datums:<12} | {summa:<10} | {kategorija:<20} | {apraksts}")
+    else:
+        print("Nederīga izvēle. Lūdzu, izvēlieties darbību no 1 līdz 7.")   
 
-    print("Izdevums pievienots:", jauns_izdevums)
-
-
+    
