@@ -64,5 +64,17 @@
         "kategorija": "Citi",
         "summa": 180.0,
         "apraksts": "8"
+    },
+    {
+        "datums": "2026-03-11",
+        "kategorija": "Citi",
+        "summa": 190.0,
+        "apraksts": "9"
+    },
+    {
+        "datums": "2026-03-11",
+        "kategorija": "Citi",
+        "summa": 200.0,
+        "apraksts": "1"
     }
 ]
