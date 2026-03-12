@@ -1,0 +1,80 @@
+
+Darba plāns
+
+1. Izmaksu uzskaitei un analīzei. Izveidod uzskaited sistēmu. Izmaksu strktūras izveide, analīzes iespējas
+2. Vizuālā struktūra.
+- Datums, Summa EUR,  Kategorija, apraksts
+- summa
+3. 
+- Izveidot kategorijas
+- Pievienot izdevumus
+	'datuma ievade ar izvēle šodien
+	' kategoriju saraksta izvēle
+	' summas ievadi, arī negative un noapalota 2 zīmes aiz kopmata
+	' pievieno  brīvā formā aprakstu 
+- Saglabāt .append
+4.Veidot statistiku  (izdevumi.json) datums, summa, kategorija,apraksts
+- funkciju izveide: ielādē, atgriež, saglabā,pievieno
+- Veidot statistiku  (expenses.json) datums, summa, kategorija,apraksts
+- veidot savienojumus ar storage.py un logic.py
+- veido savienojumu ar export.py uz marts.csv
+- 
+
+5. logic.py - Biznesa logika, filtrēšana, summēšana total, by kategorijas, saraksts
+4. CSV eksports -saglaba visus izdevumus
+
+Darba plāns
+1. Izmaksu uzskaite un analīze
+Izveidot sistēmu personīgo izdevumu uzskaitei un analīzei.
+Izveidot izdevumu uzskaites struktūru
+Nodrošināt iespēju analizēt izdevumus
+
+2. Vizuālā datu struktūra
+
+Izdevumu attēlošana tabulas veidā ar šādiem laukiem:
+
+Datums
+Summa (EUR)
+Kategorija
+Apraksts
+= kopējā summa.
+
+3. Izdevumu pievienošana
+
+Izveidot izdevumu kategoriju sarakstu
+Pievienot jaunus izdevumus
+- Datums
+  iespēja izmantot šodienas datumu kā noklusējumu
+- Kategorija
+  izvēle no iepriekš definēta kategoriju saraksta
+- Summa EUR
+  iespējams ievadīt arī negatīvu vērtību
+  summa tiek noapaļota līdz 2 zīmēm aiz komata
+- Apraksts
+  brīvā formā
+
+Dati tiek saglabāti sarakstā, izmantojot:
+.append()
+4. Datu saglabāšana un statistika
+
+- Izdevumi tiek saglabāti failā:
+izdevumi.json
+Datu struktūra:datums, summa, kategorija, apraksts
+
+- Izveidot funkcijas:
+ielādēt datus
+saglabāt datus
+pievienot jaunu ierakstu
+
+Datu apstrāde tiek sadalīta moduļos:
+storage.py – datu ielāde un saglabāšana
+logic.py – aprēķini un filtrēšana
+ *izdevumu filtrēšanu pēc mēneša
+ *kopējās summas aprēķinu
+ *kopsavilkumu pa kategorijām
+ *izdevumu saraksta sagatavošanu attēlošanai
+
+5. CSV eksports export.py
+
+Izveidot iespēju eksportēt visus izdevumus uz CSV failu:
+marts.csv
