@@ -161,4 +161,41 @@ while True:
             maxcolwidths=[20, 20]
         ))
         print(f"Kopējā summa visām kategorijām: {aprēķināt_kopējo_summu(izdevumi):.2f} EUR")
-        
+# ___5 IZVELE  DZĒST IZDEVUMU 1 dzēst un 0 atcelt darbībi
+    elif choice == "5":
+        print("\nDzēst izdevumu")
+        if not izdevumi:
+            print("Nav pievienotu izdevumu.")
+        else:
+# parāda izdevumus ar numuriem/indeksu, lai lietotājs var izvēlēties, kuru dzēst !enumarate izdevumi, sākot ar 1
+            tabula = []
+            for index, izdevumu_saraksts in enumerate(izdevumi, start=1):
+                tabula.append([
+                    f"{index:04d}.", # !d nozīmē pirms 04 četras 0000 pirms numura,
+                    izdevumu_saraksts["datums"],
+                    f"{izdevumu_saraksts['summa']:.2f} EUR",
+                    izdevumu_saraksts["kategorija"],
+                    izdevumu_saraksts["apraksts"]
+                ])
+            print(tabulate(
+                tabula, 
+                headers=["Nr.", "Datums", "Summa (EUR)", "Kategorija", "Apraksts"], 
+                tablefmt="grid",
+                maxcolwidths=[5, 12, 12, 20, 30]
+            ))
+# lietotājs ievada numuru, kuru dzēst   
+            while True:
+                try:
+                    izvēle = int(input("Ievadiet ieraksata numuru, kuru dzēst (0 - atcelt, 1 - dzēst): "))
+                    if izvēle == 0:
+                        print("Dzēšana atcelta.")
+                        break
+                    elif 1 <= izvēle <= len(izdevumi):
+                        izdevums_dzests = izdevumi.pop(izvēle - 1) #pop izdevumu sarakstā pēc numura, atņemot 1, jo indekss sākas
+                        save_expenses(izdevumi) #saglabā izdevumus pēc dzēšanas
+                        print("Izdevums dzēsts:", izdevums_dzests)  
+                    else:
+                        print("Nederīgs numurs. Lūdzu, ievadiet numuru no saraksta.")
+                except ValueError:
+                    print("Lūdzu, ievadiet derīgu numuru.")
+# ___6 IZVELE  EKSPORTĒT CSV                    
