@@ -4,6 +4,9 @@ import re
 
 # savienojums ar storage.py
 from storage import load_expenses, save_expenses
+#savienojums ar logic.py
+from logic import filtrēt_pēc_mēneša, aprēķināt_kopējo_summu, kopsavilkums_pēc_kategorijas, izvade_tabula
+
 #izveikdo tabulas izveide
 from tabulate import tabulate   
 Kategorijas = [
@@ -96,7 +99,7 @@ while True:
 # saglabā izdevumus datubāzē
         save_expenses(izdevumi)
         print("Izdevums pievienots:", jauns_izdevums)
-# ___2 IZVELE 
+# ___2 IZVELE PARĀDĪT IZDEVUMUS
     # parādīt izdevumus
     elif choice == "2":  
         print("\nIzdevumi:")
@@ -118,7 +121,44 @@ while True:
                 tablefmt="grid",
                 maxcolwidths=[12, 12, 20, 30]
             ))
-    else:
-        print("Nederīga izvēle. Lūdzu, izvēlieties darbību no 1 līdz 7.")   
+# ___3 IZVELE  FILRTĒT PĒC MĒNEŠA
+    elif choice == "3":
+        print("\nFiltrēt pēc mēneša")
+        mēnesis = input("Ievadiet mēnesi (YYYY-MM): ")
+        filtrēti_izdevumi = filtrēt_pēc_mēneša(izdevumi, mēnesis)
+        if not filtrēti_izdevumi:
+            print(f"Nav izdevumu mēnesim {mēnesis}.")
+        else:
+            tabula = izvade_tabula(filtrēti_izdevumi)
+            for izdevumu_saraksts in filtrēti_izdevumi:
+                tabula.append([
+                    izdevumu_saraksts["datums"],
+                    izdevumu_saraksts["kategorija"],
+                    f"{izdevumu_saraksts['summa']:.2f} EUR",
+                    izdevumu_saraksts["apraksts"]
+                ])
+            print(tabulate(
+                tabula, 
+                headers=["Datums", "Kategorija", "Summa (EUR)", "Apraksts"], 
+                tablefmt="grid",
+                maxcolwidths=[12, 20, 12, 30]
+            ))
+            print(f"Kopējā summa mēnesim {mēnesis}: {aprēķināt_kopējo_summu(filtrēti_izdevumi):.2f} EUR")
+            print("Ierakstu skaits:", len(filtrēti_izdevumi))
+    
 
-
+# ___4 IZVELE  FILRTĒT PA KATEGORIJĀM
+    elif choice == "4":
+        print("\nKopsavilkums pa kategorijām")
+        kopsavilkums = kopsavilkums_pēc_kategorijas(izdevumi)
+        tabula = []
+        for kategorija, summa in kopsavilkums.items():
+            tabula.append([kategorija, f"{summa:.2f} EUR"])
+        print(tabulate(
+            tabula, 
+            headers=["Kategorija", "Kopējā summa (EUR)"], 
+            tablefmt="grid",
+            maxcolwidths=[20, 20]
+        ))
+        print(f"Kopējā summa visām kategorijām: {aprēķināt_kopējo_summu(izdevumi):.2f} EUR")
+        
