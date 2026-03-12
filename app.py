@@ -115,7 +115,8 @@ while True:
             print(tabulate(
                 tabula, 
                 headers=["Datums", "Summa (EUR)", "Kategorija", "Apraksts"], 
-                tablefmt="grid"
+                tablefmt="grid",
+                maxcolwidths=[12, 12, 20, 30]
             ))
     else:
         print("Nederīga izvēle. Lūdzu, izvēlieties darbību no 1 līdz 7.")   
